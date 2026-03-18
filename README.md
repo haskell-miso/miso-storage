@@ -1,4 +1,4 @@
-🍱 miso-storage
+🍜 🗂️ miso-storage
 ====================
 
 Local and session storage example.
