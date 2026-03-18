@@ -15,6 +15,8 @@ import           Miso.Lens.TH
 import           Miso.FFI.QQ (js)
 import qualified Miso.CSS as CSS
 -----------------------------------------------------------------------------
+import           Control.Monad (when)
+-----------------------------------------------------------------------------
 data Action
   = ClearStorage
   | AddLocal
@@ -94,25 +96,35 @@ updateModel = \case
    AddLocal -> do
      k <- use localKey
      v <- use localValue
+     localKey .= mempty
+     localValue .= mempty
      io $ do
-       setLocalStorage k v
-       resetLocal
+       when (k /= "") $ do
+         setLocalStorage k v
+         resetLocal
        pure GetCurrentLocal
    AddSession -> do
      k <- use sessionKey
      v <- use sessionValue
+     sessionKey .= mempty
+     sessionValue .= mempty
      io $ do
-       setSessionStorage k v
-       resetSession
+       when (k /= "") $ do
+         setSessionStorage k v
+         resetSession
        pure GetCurrentSession
    RemoveLocal -> do
      k <- use localKey
+     localKey .= mempty
+     localValue .= mempty
      io $ do
        removeLocalStorage k
        resetLocal
        pure GetCurrentLocal
    RemoveSession -> do
      k <- use sessionKey
+     sessionKey .= mempty
+     sessionValue .= mempty
      io $ do
        removeSessionStorage k
        resetSession
