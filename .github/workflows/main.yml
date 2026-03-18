@@ -2,7 +2,7 @@ name: Build and deploy
 
 on:
   push:
-    branches: main
+    branches: master
   pull_request:
 
 permissions:
@@ -27,13 +27,7 @@ jobs:
           name: haskell-miso-cachix
 
       - name: Build WASM using Nix
-        run: nix develop .#wasm --command bash -c "make"
-
-      - name: Clean and GC
-        run: nix develop .#wasm --command bash -c "make" && nix-collect-garbage -d
-
-      - name: Build JS using Nix
-        run: nix develop .#ghcjs --command bash -c "make js"
+        run: nix develop .#wasm --command bash -c "make all"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -41,7 +35,7 @@ jobs:
           path: ./public
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     environment:
@@ -54,4 +48,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
