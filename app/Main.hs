@@ -72,15 +72,15 @@ getCurrentSessionStorage :: IO MisoString
 getCurrentSessionStorage = [js| return JSON.stringify(window.sessionStorage) |]
 -----------------------------------------------------------------------------
 resetLocal :: IO ()
-resetLocal = do       
+resetLocal = do
   getElementById "localValue" >>= flip setValue mempty
   getElementById "localKey" >>= flip setValue mempty
 -----------------------------------------------------------------------------
 resetSession :: IO ()
-resetSession = do       
+resetSession = do
   getElementById "sessionValue" >>= flip setValue mempty
   getElementById "sessionKey" >>= flip setValue mempty
------------------------------------------------------------------------------  
+-----------------------------------------------------------------------------
 updateModel :: Action -> Effect ROOT Model Action
 updateModel = \case
    Load -> do
@@ -132,19 +132,19 @@ updateModel = \case
    SetLocalKey k -> localKey .= k
    SetLocalValue v -> localValue .= v
    SetSessionKey k -> sessionKey .= k
-   SetSessionValue v -> sessionValue .= v   
+   SetSessionValue v -> sessionValue .= v
    GetCurrentLocal -> io (SetCurrentLocal <$> getCurrentLocalStorage)
    GetCurrentSession -> io (SetCurrentSession <$> getCurrentSessionStorage)
    SetCurrentLocal x -> currentLocal .= x
    SetCurrentSession x -> currentSession .= x
 -----------------------------------------------------------------------------
 viewModel :: Model -> View Model Action
-viewModel x = 
+viewModel x =
   div_
     [class_ "card"]
     [ h1_
         []
-        [span_ [] ["🍜 🗂️"], "miso-storage"]
+        [span_ [] ["🍜 🗂️"], a_ [ href_ "https://github.com/haskell-miso/miso-storage" ] ["miso-storage"]]
     , div_
         [class_ "subhead"]
         [ "⚡ data survives page reload — local stays, session dies when tab closes"
@@ -167,7 +167,7 @@ viewModel x =
                         [ placeholder_ "e.g. key"
                         , id_ "localKey"
                         , type_ "text"
-                        , onChange SetLocalKey  
+                        , onChange SetLocalKey
                         ]
                     ]
                 , div_
@@ -196,9 +196,9 @@ viewModel x =
                 [ p_ [] ["📋 current local storage"]
                 , div_
                     [ id_ "localDisplay"
-                    , class_ "storage-content" 
+                    , class_ "storage-content"
                     ]
-                    [ text (x ^. currentLocal) 
+                    [ text (x ^. currentLocal)
                     ]
                 ]
             ]
