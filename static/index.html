@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-   <meta charset="utf-8">
-   <title>🍜 🗂️ miso-storage </title>
-   <link rel="preconnect" href="https://fonts.googleapis.com" />
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
-   <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>miso-storage — Web Storage from Haskell</title>
+    <meta name="description" content="The Web Storage API driven from Haskell compiled to WebAssembly: localStorage and sessionStorage editors that stay in sync across tabs via storage events, built with the miso framework.">
+    <link rel="canonical" href="https://storage.haskell-miso.org/">
+    <meta name="theme-color" content="#101418">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://storage.haskell-miso.org/">
+    <meta property="og:title" content="miso-storage — Web Storage from Haskell">
+    <meta property="og:description" content="localStorage and sessionStorage editors written in Haskell, synced across tabs, compiled to WebAssembly with miso.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="miso-storage — Web Storage from Haskell">
+    <meta name="twitter:description" content="localStorage and sessionStorage editors written in Haskell, compiled to WebAssembly with miso.">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "miso-storage",
+      "url": "https://storage.haskell-miso.org/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "description": "The Web Storage API driven from Haskell compiled to WebAssembly with the miso framework.",
+      "codeRepository": "https://github.com/haskell-miso/miso-storage"
+    }
+    </script>
   </head>
   <body>
-    <script src="/index.js" type="module"></script>
+    <div class="boot">
+      <div class="spin" aria-hidden="true"></div>
+      <p>Loading Haskell WebAssembly&hellip;</p>
+      <noscript>miso-storage is an interactive WebAssembly demo and needs JavaScript enabled.</noscript>
+    </div>
+    <script src="index.js" type="module"></script>
   </body>
 </html>
