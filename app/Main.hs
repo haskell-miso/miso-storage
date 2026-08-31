@@ -67,7 +67,7 @@ app = (component emptyModel updateModel viewModel)
 -----------------------------------------------------------------------------
 -- | The @storage@ event fires when *another tab* changes storage:
 -- open this page twice and watch the tables stay in sync.
-storageSub :: Sub Action
+storageSub :: Sub model Action
 storageSub = windowSub "storage" emptyDecoder (const Refresh)
 -----------------------------------------------------------------------------
 -- | Snapshot an entire storage area via @JSON.stringify@, then decode it
